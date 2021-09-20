@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Grid = styled.div`
@@ -26,17 +27,18 @@ const DrinksGrid = (props) => {
 }
 
 
-
 const Drink = ({ drink }) => {
-	const { strDrink, strDrinkThumb, strImageAttribution } = drink;
+	const { idDrink, strDrink, strDrinkThumb, strImageAttribution } = drink;
 
 	return (
-		<DrinkWrap>
-			<h3>{strDrink}</h3>
-			<div>
-				<Img src={strDrinkThumb} alt={strImageAttribution} />
-			</div>
-		</DrinkWrap>
+		<Link to={`/drink/${idDrink}`}>
+			<DrinkWrap>
+				<h3>{strDrink}</h3>
+				<div>
+					<Img src={strDrinkThumb} alt={strImageAttribution} />
+				</div>
+			</DrinkWrap>
+		</Link>
 	)
 }
 

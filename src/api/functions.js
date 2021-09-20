@@ -60,3 +60,17 @@ export const fetchIngridients = () => {
 	});
 }
 
+export const fetchDrink = (id) => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}lookup.php?i=${id}`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+

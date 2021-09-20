@@ -6,6 +6,7 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 
 import Home from './pages/Home.js';
+import Drink from './pages/Drink.js';
 import GlassFilter from './pages/GlassFilter.js';
 import IngridientFilter from './pages/IngridientFilter.js';
 
@@ -24,15 +25,14 @@ const App = () => {
         <Header />
         <Content>
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <Route exact path="/" component={Home} />
             <Route path="/glass-filter">
               <GlassFilter />
             </Route>
             <Route path="/ingridient-filter">
               <IngridientFilter />
             </Route>
+            <Route path="/drink/:id" component={Drink} />
           </Switch>
         </Content>
         <Footer />

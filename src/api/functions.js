@@ -1,35 +1,62 @@
 import axios from 'axios';
 
-	export const fetchDrinks = (keyword = '') => {
-		const config = { mode: 'no-cors' };
-		return new Promise((resolve, reject) => {
-			axios
-				.get(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${keyword}`, config)
-				// .get(`https://thecocktaildb.com/api/json/v1/1/filter.php?i=${keyword}`, config)
-				.then(res => {
-					console.log(res.data.drinks);
-					resolve(res.data.drinks);
-				})
-				.catch(err => {
-					console.error(err.message);
-					reject();
-				});
-		});
-	}
+const API_URL = "https://thecocktaildb.com/api/json/v1/1/";
+const config = { mode: 'no-cors' };
 
 
-	export const fetchCategories = () => {
-		const config = { mode: 'no-cors' };
-		return new Promise((resolve, reject) => {
-			axios
-				.get(`https://thecocktaildb.com/api/json/v1/1/list.php?c=list`, config)
-				.then(res => {
-					console.log(res.data.drinks);
-					resolve(res.data.drinks);
-				})
-				.catch(err => {
-					console.error(err.message);
-					reject();
-				});
-		});
-	}
+export const fetchIngridientDrinks = (ingridient = '') => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}filter.php?i=${ingridient}`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
+export const fetchGlassDrinks = (glass = '') => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}filter.php?g=${glass}`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
+export const fetchGlasses = () => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}list.php?g=list`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
+export const fetchIngridients = () => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}list.php?i=list`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+

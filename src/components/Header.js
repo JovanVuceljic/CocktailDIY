@@ -30,9 +30,20 @@ const MenuItem = styled.div`
 	cursor: pointer;
 	user-select: none;
 	color: white; 
+	&:first-child {
+		padding-left: 0;
+	}
 	a {
 		color: white; 
 		text-decoration: none;
+		width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+		&:hover {
+			opacity: 0.7;
+		}
 	}
 `;
 
@@ -41,9 +52,10 @@ const Header = (props) => {
 		<HeaderWrap>
 			<Menu>
 				<MenuItem><Link to="/">Home</Link></MenuItem>
-				<MenuItem><Link to="/cocktails">Cocktails</Link></MenuItem>
-				<MenuItem>About</MenuItem>
-				<MenuItem>Author</MenuItem>
+				<MenuItem><Link to="/search-cocktails">Search Cocktails</Link></MenuItem>
+				<MenuItem><Link to="/filter-cocktails">Filter Cocktails</Link></MenuItem>
+				<MenuItem><Link to="/about">About</Link></MenuItem>
+				<MenuItem><Link to="/author">Author</Link></MenuItem>
 			</Menu>
 		</HeaderWrap>
 	)

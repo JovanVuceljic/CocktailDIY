@@ -17,7 +17,7 @@ const FooterWrap = styled.div`
 const Footer = (props) => {
 	return (
 		<FooterWrap>
-			<p>copyright © Jovan Vučeljić 162/14 2021</p>
+			<p>Jovan Vučeljić 162/14 2021</p>
 		</FooterWrap>
 	)
 }

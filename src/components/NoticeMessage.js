@@ -5,7 +5,8 @@ const Message = styled.div`
 	width: 100%;
 	text-align: center;
 	color: rgba(0,0,0,0.6);
-		`;
+	margin-bottom: 30px;
+`;
 
 const NoticeMessage = ({ message = "No data" }) => {
 	return (<Message>{message}</Message>)

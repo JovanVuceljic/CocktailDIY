@@ -4,6 +4,39 @@ const API_URL = "https://thecocktaildb.com/api/json/v1/1/";
 const config = { mode: 'no-cors' };
 
 
+
+
+export const fetchDrinksByName = (name = '') => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}search.php?s=${name}`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
+export const fetchDrinksByIngridientName = (ingridient = '') => {
+	console.log(ingridient);
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}search.php?i=${ingridient}`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
+
+
 export const fetchIngridientDrinks = (ingridient = '') => {
 	return new Promise((resolve, reject) => {
 		axios

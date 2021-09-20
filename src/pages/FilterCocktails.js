@@ -33,6 +33,7 @@ const InputWrap = styled.div`
 `;
 const CheckWrap = styled.div`
 	display: flex;
+	margin-top: 50px;
 	width: 100%;
 	user-select: none;
 	justify-content: space-around;
@@ -51,9 +52,11 @@ const CheckWrap = styled.div`
 	}
 `;
 
-const GlassFilter = () => {
+const FilterCocktails = () => {
 
 	const [drinks, setDrinks] = useState(null);
+	const [message, setMessage] = useState("");
+
 	const [glass, setGlass] = useState("");
 	const [ingridient, setIngridient] = useState(null);
 	const [category, setCategory] = useState(null);
@@ -62,32 +65,6 @@ const GlassFilter = () => {
 	const [ingridientList, setIngridientList] = useState([]);
 	const [categoryList, setCategoryList] = useState([]);
 	const [selectedFilter, setSelectedFilter] = useState('glass');
-
-	const fetchByGlass = () => {
-		fetchGlassDrinks(glass).then(res => {
-			setDrinks(res || [])
-		}).catch(err => {
-			setDrinks(null)
-			console.error(err);
-		});
-	}
-
-	const fetchByIngridient = () => {
-		fetchIngridientDrinks(ingridient).then(res => {
-			setDrinks(res || [])
-		}).catch(err => {
-			console.error(err);
-		});
-	}
-
-
-	const fetchByCategories = () => {
-		fetchCategoryDrinks(category).then(res => {
-			setDrinks(res || [])
-		}).catch(err => {
-			console.error(err);
-		});
-	}
 
 	const initialFetch = () => {
 		fetchGlasses().then(res => {
@@ -107,24 +84,59 @@ const GlassFilter = () => {
 		});
 	}
 
+	const fetchByGlass = () => {
+		fetchGlassDrinks(glass).then(res => {
+			setDrinks(res || [])
+			setMessage(`Showing results for filter by glass type with selected: ${glass}`);
+		}).catch(err => {
+			setDrinks(null)
+			console.error(err);
+		});
+	}
+
+	const fetchByIngridient = () => {
+		fetchIngridientDrinks(ingridient).then(res => {
+			setMessage(`Showing results for filter by ingridient with selected: ${ingridient}`);
+			setDrinks(res || [])
+		}).catch(err => {
+			console.error(err);
+		});
+	}
+
+	const fetchByCategories = () => {
+		fetchCategoryDrinks(category).then(res => {
+			setMessage(`Showing results for filter by category with selected: ${category}`);
+			setDrinks(res || [])
+		}).catch(err => {
+			console.error(err);
+		});
+	}
+
+
 	useEffect(() => {
 		initialFetch()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
-		if (selectedFilter === 'glass' && glass) {
-			fetchByGlass()
-		}
-		if (selectedFilter === 'ingridient' && ingridient) {
-			fetchByIngridient()
-		}
-		if (selectedFilter === 'category' && category) {
-			fetchByCategories()
+		switch (selectedFilter) {
+			case 'glass':
+				glass && fetchByGlass()
+				break;
+			case 'ingridient':
+				ingridient && fetchByIngridient();
+				break;
+			case 'category':
+				category && fetchByCategories();
+				break;
+
+			default:
+				setDrinks([])
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [glass, ingridient, category]);
 
+	
 	const handleGlassSelect = (e) => {
 		setGlass(e.target.value)
 	}
@@ -132,6 +144,7 @@ const GlassFilter = () => {
 	const handleIngridientSelect = (e) => {
 		setIngridient(e.target.value)
 	}
+
 	const handleCategorySelect = (e) => {
 		setCategory(e.target.value)
 	}
@@ -189,8 +202,8 @@ const GlassFilter = () => {
 			{drinks == null ? <NoticeMessage message="Select option" /> :
 				drinks.length ? (
 					<Fragment>
-						{/* <div>Showing results for {selectedFilter} </div> */}
-						<DrinksGrid elements={drinks} /> :
+						<NoticeMessage message={message} />
+						<DrinksGrid elements={drinks} />
 					</Fragment>) :
 					<NoticeMessage message="No data for given filter" />
 			}
@@ -200,4 +213,4 @@ const GlassFilter = () => {
 }
 
 
-export default GlassFilter
+export default FilterCocktails

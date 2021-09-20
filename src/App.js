@@ -7,8 +7,7 @@ import Footer from './components/Footer.js';
 
 import Home from './pages/Home.js';
 import Drink from './pages/Drink.js';
-import GlassFilter from './pages/GlassFilter.js';
-import IngridientFilter from './pages/IngridientFilter.js';
+import Cocktails from './pages/Cocktails.js';
 
 
 const Content = styled.div`
@@ -26,12 +25,7 @@ const App = () => {
         <Content>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/glass-filter">
-              <GlassFilter />
-            </Route>
-            <Route path="/ingridient-filter">
-              <IngridientFilter />
-            </Route>
+            <Route path="/Cocktails" component={Cocktails} />
             <Route path="/drink/:id" component={Drink} />
           </Switch>
         </Content>

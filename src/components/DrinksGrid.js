@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;    
-	margin: 0 -5px;
+	grid-template-columns: 24.5% 24.5% 24.5% 24.5%;
+	grid-column-gap: 1%;
 `;
 
 const DrinkWrap = styled.div`

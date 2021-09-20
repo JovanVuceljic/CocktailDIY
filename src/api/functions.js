@@ -32,6 +32,21 @@ export const fetchGlassDrinks = (glass = '') => {
 	});
 }
 
+
+export const fetchCategoryDrinks = (category = '') => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}filter.php?c=${category}`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
 export const fetchGlasses = () => {
 	return new Promise((resolve, reject) => {
 		axios
@@ -59,6 +74,21 @@ export const fetchIngridients = () => {
 			});
 	});
 }
+
+export const fetchCategories = () => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(`${API_URL}list.php?c=list`, config)
+			.then(res => {
+				resolve(res.data.drinks);
+			})
+			.catch(err => {
+				console.error(err.message);
+				reject();
+			});
+	});
+}
+
 
 export const fetchDrink = (id) => {
 	return new Promise((resolve, reject) => {

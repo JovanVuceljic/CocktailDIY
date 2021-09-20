@@ -41,8 +41,7 @@ const Header = (props) => {
 		<HeaderWrap>
 			<Menu>
 				<MenuItem><Link to="/">Home</Link></MenuItem>
-				<MenuItem><Link to="/glass-filter">Glass filter</Link></MenuItem>
-				<MenuItem><Link to="/ingridient-filter">Ingridient filter</Link></MenuItem>
+				<MenuItem><Link to="/cocktails">Cocktails</Link></MenuItem>
 				<MenuItem>About</MenuItem>
 				<MenuItem>Author</MenuItem>
 			</Menu>

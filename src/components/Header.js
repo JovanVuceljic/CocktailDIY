@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 
 const HeaderWrap = styled.div`
-  background-color: black;
+  background-color: #111;
 	height: 60px;
 	width: 100%;
+	box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
 	`;
 
 const Menu = styled.div`

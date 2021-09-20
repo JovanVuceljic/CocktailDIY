@@ -5,7 +5,14 @@ import NoticeMessage from '../components/NoticeMessage.js';
 
 const DrinkWrap = styled.div`
 	max-width: 600px;
-	margin: 0 auto;
+	margin: 30px auto;
+`;
+const Headline = styled.h1`
+	letter-spacing: 1px;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: "sans-serif";
+	margin: 10px;
 `;
 const Img = styled.img`
 	width: 100%;
@@ -48,11 +55,19 @@ const Drink = ({ match }) => {
 		strGlass, strIBA, strImageAttribution, strInstructions
 	} = drink || {};
 
+	const { strIngredient1, strIngredient2, strIngredient3,
+		strIngredient4, strIngredient5, strIngredient6, 
+		strIngredient7, strIngredient8, strIngredient9,
+		strMeasure1, strMeasure2, strMeasure3,
+		strMeasure4, strMeasure5, strMeasure6, 
+		strMeasure7, strMeasure8, strMeasure9,
+	} = drink || {};
+	console.log(drink);
 
 	return (
 		drink ? (
 			<DrinkWrap>
-				<h3>{strDrink}</h3>
+				<Headline>{strDrink}</Headline>
 				<div>
 					<Img src={strDrinkThumb} alt={strImageAttribution} />
 				</div>
@@ -65,6 +80,19 @@ const Drink = ({ match }) => {
 					<Li><div>Glass:</div><div>{strGlass}</div></Li>
 					<Li><div>IBA:</div><div>{strIBA}</div></Li>
 				</Ul>
+				<h4>Ingridients</h4>
+				<Ul>
+					{strIngredient1 && (<Li><div>{strIngredient1}:</div><div>{strMeasure1}</div></Li>)}
+					{strIngredient2 && (<Li><div>{strIngredient2}:</div><div>{strMeasure2}</div></Li>)}
+					{strIngredient3 && (<Li><div>{strIngredient3}:</div><div>{strMeasure3}</div></Li>)}
+					{strIngredient4 && (<Li><div>{strIngredient4}:</div><div>{strMeasure4}</div></Li>)}
+					{strIngredient5 && (<Li><div>{strIngredient5}:</div><div>{strMeasure5}</div></Li>)}
+					{strIngredient6 && (<Li><div>{strIngredient6}:</div><div>{strMeasure6}</div></Li>)}
+					{strIngredient7 && (<Li><div>{strIngredient7}:</div><div>{strMeasure7}</div></Li>)}
+					{strIngredient8 && (<Li><div>{strIngredient8}:</div><div>{strMeasure8}</div></Li>)}
+					{strIngredient9 && (<Li><div>{strIngredient9}:</div><div>{strMeasure9}</div></Li>)}
+				</Ul>
+
 			</DrinkWrap>
 		) :
 			<NoticeMessage message="That cocktail doesn't exist" />

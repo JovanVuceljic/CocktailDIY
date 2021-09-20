@@ -3,15 +3,16 @@ import styled from 'styled-components';
 
 
 const FooterWrap = styled.div`
-  background-color: black;
+  background-color: #111;
 	height: 60px;
 	width: 100%;
 	color: #666;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
 	`;
-	
+
 
 const Footer = (props) => {
 	return (

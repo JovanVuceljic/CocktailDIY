@@ -9,7 +9,7 @@ import {
 
 const Filters = styled.div`
 	display: flex;
-	margin: 80px -10px 20px -10px;
+	margin: 40px -5px 45px -5px;
 `;
 
 const InputWrap = styled.div`
@@ -53,6 +53,7 @@ const SearchCocktails = () => {
 
 	return (
 		<div>
+			<h1>Search cocktails</h1>
 			<Filters>
 				<InputWrap>
 					<input type="search" onChange={handleSearch} placeholder={`Serach by name`} />

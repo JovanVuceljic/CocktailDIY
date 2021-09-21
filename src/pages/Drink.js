@@ -12,14 +12,16 @@ const Headline = styled.h1`
 	text-align: center;
 	text-transform: uppercase;
 	font-family: "sans-serif";
-	margin-bottom: 35px;
-	border: none;	
-	padding: 0;
-	font-size: 25px;
+	font-size: 25px;    
+	margin: 25px 0; 
+	background: rgba(128,128,128,0.1);
+	padding: 5px 0;
+	border-top: 2px solid silver;
+	border-bottom: 2px solid silver;
 `;
 const H2 = styled.h2`
 	border-bottom: 2px solid black;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 `;
 const Img = styled.img`
 	width: 100%;
@@ -82,6 +84,7 @@ const Drink = ({ match }) => {
 				</div>
 				<H2>Instructions</H2>
 				<p>{strInstructions}</p>
+				<H2>Info</H2>
 				<Ul>
 					<Li><div>Category:</div><div>{strCategory}</div></Li>
 					<Li><div>Alcoholic:</div><div>{strAlcoholic}</div></Li>

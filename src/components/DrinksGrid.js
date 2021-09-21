@@ -14,6 +14,7 @@ const DrinkWrap = styled.div`
 	border-radius: 3px;
 	margin-bottom: 14px;
 	overflow: hidden;
+	position: relative;
 	&>div {
     display: grid;
 		overflow: hidden;
@@ -29,8 +30,8 @@ const DrinkWrap = styled.div`
 `;
 
 const Heading = styled.h3`
-	color:white;
-	background: #111;
+	color: white;
+	background: rgba(0,0,0,0.5);
 	text-align: center;
 	margin: 0;
 	padding: 7px;
@@ -39,6 +40,9 @@ const Heading = styled.h3`
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 `;
 
 

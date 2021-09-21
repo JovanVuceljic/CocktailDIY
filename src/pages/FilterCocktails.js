@@ -14,7 +14,7 @@ import {
 
 const Filters = styled.div`
 	display: flex;
-	margin: 20px -10px;
+	margin: 30px 0;
 `;
 
 const InputWrap = styled.div`
@@ -31,26 +31,10 @@ const InputWrap = styled.div`
 		outline: none;
 	}
 `;
-const CheckWrap = styled.div`
-	display: flex;
-	margin-top: 50px;
-	width: 100%;
-	user-select: none;
-	justify-content: space-around;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: bold;
-	font-size: 14px;
-	.active {
-    text-decoration: underline;
-	}
-	div {
-		cursor: pointer;
-		&:hover {
-			opacity: 0.8;
-		}
-	}
+const SelectType = styled.select`
+	text-transform: capitalize;
 `;
+
 
 const FilterCocktails = () => {
 
@@ -64,7 +48,7 @@ const FilterCocktails = () => {
 	const [glassTypeList, setGlassTypeList] = useState([]);
 	const [ingridientList, setIngridientList] = useState([]);
 	const [categoryList, setCategoryList] = useState([]);
-	const [selectedFilter, setSelectedFilter] = useState('glass');
+	const [selectedFilter, setSelectedFilter] = useState('category');
 
 	const initialFetch = () => {
 		fetchGlasses().then(res => {
@@ -136,7 +120,11 @@ const FilterCocktails = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [glass, ingridient, category]);
 
-	
+
+	const handleTypeSelect = (e) => {
+		setSelectedFilter(e.target.value);
+	}
+
 	const handleGlassSelect = (e) => {
 		setGlass(e.target.value)
 	}
@@ -149,26 +137,18 @@ const FilterCocktails = () => {
 		setCategory(e.target.value)
 	}
 
+
 	return (
 		<div>
-			<CheckWrap>
-				<div onClick={() => setSelectedFilter('ingridient')}
-					className={selectedFilter === 'ingridient' ? 'active' : ''}
-				>
-					Ingridient
-				</div>
-				<div onClick={() => setSelectedFilter('glass')}
-					className={selectedFilter === 'glass' ? 'active' : ''}
-				>
-					Glass
-				</div>
-				<div onClick={() => setSelectedFilter('category')}
-					className={selectedFilter === 'category' ? 'active' : ''}
-				>
-					Category
-				</div>
-			</CheckWrap>
+			<h1>Filter cocktails</h1>
 			<Filters>
+				<InputWrap>
+					<SelectType onChange={handleTypeSelect}>
+						<option>category</option>
+						<option>ingridient</option>
+						<option>glass</option>
+					</SelectType>
+				</InputWrap>
 				<InputWrap>
 					{selectedFilter === 'glass' ?
 						(<select onChange={handleGlassSelect}>

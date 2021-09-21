@@ -2,13 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AuthorImage = styled.div`
-	width: 300px;
-	border-radius: 50%;
-	overflow: hidden;
+	max-width: 300px;
+	div {
+		border-radius: 50%;
+		overflow: hidden;
+	}
 `;
 
 const Content = styled.div`
 	display: flex;
+	@media only screen and (max-width: 680px) {
+		flex-direction: column;
+    align-items: center;
+	}
 `;
 
 const Info = styled.div`
@@ -46,7 +52,9 @@ const Author = () => {
 			<h1>Author details</h1>
 			<Content>
 				<AuthorImage>
-					<img src="jovan-vuceljic.jpg" alt="author" />
+					<div>
+						<img src="jovan-vuceljic.jpg" alt="author" />
+					</div>
 				</AuthorImage>
 				<Info>
 					<div>Name: Jovan Vučeljić</div>

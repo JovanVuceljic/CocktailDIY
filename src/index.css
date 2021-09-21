@@ -43,3 +43,7 @@ h2 {
   margin-top: 40px;
   font-family: "sans-serif";
 }
+
+div.open {
+  display: block;
+}

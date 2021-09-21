@@ -54,7 +54,7 @@ const DateModified = styled.div`
 const Drink = ({ match }) => {
 
 	const { id } = match.params;
-	
+
 	const [drink, setDrink] = useState(null);
 
 	const fetchData = () => {
@@ -73,20 +73,19 @@ const Drink = ({ match }) => {
 
 	const { strAlcoholic, strCategory, strCreativeCommonsConfirmed,
 		strDrink, strDrinkAlternate, strDrinkThumb,
-		strGlass, strIBA, strImageAttribution, strInstructions, dateModified, 
+		strGlass, strIBA, strImageAttribution, strInstructions, dateModified,
 		strIngredient1, strIngredient2, strIngredient3,
-		strIngredient4, strIngredient5, strIngredient6, 
+		strIngredient4, strIngredient5, strIngredient6,
 		strIngredient7, strIngredient8, strIngredient9,
 		strMeasure1, strMeasure2, strMeasure3,
-		strMeasure4, strMeasure5, strMeasure6, 
+		strMeasure4, strMeasure5, strMeasure6,
 		strMeasure7, strMeasure8, strMeasure9,
 	} = drink || {};
-	
+
 	const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+		"July", "August", "September", "October", "November", "December"];
 	const date = new Date(dateModified)
-	const dateModifiedFormat = `${date.getDate()}. ${monthNames[date.getMonth()]}. ${date.getFullYear()}.`; 
+	const dateModifiedFormat = `${date.getDate()}. ${monthNames[date.getMonth()]}. ${date.getFullYear()}.`;
 
 	return (
 		drink ? (

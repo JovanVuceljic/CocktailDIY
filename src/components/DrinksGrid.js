@@ -6,6 +6,10 @@ const Grid = styled.div`
 	display: grid;
 	grid-template-columns: 24.5% 24.5% 24.5% 24.5%;
 	grid-column-gap: 1%;
+	
+	@media only screen and (max-width: 680px) {
+		grid-template-columns: 49% 49%;	
+	}
 `;
 
 const DrinkWrap = styled.div`

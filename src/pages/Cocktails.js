@@ -36,6 +36,14 @@ const InputWrap = styled.div`
 	}
 `;
 
+const SortSelect = styled.div`
+	display: flex;
+	height: 30px;
+	padding: 10px;
+	max-width: 30px;
+	width: 100%;
+	margin-left: auto;
+`;
 
 const FilterCocktails = () => {
 
@@ -43,6 +51,7 @@ const FilterCocktails = () => {
 	const [glass, setGlass] = useState("");
 	const [ingridient, setIngridient] = useState(null);
 	const [category, setCategory] = useState(null);
+	const [sortType, setSortType] = useState(1);
 
 	const [glassTypeList, setGlassTypeList] = useState([]);
 	const [ingridientList, setIngridientList] = useState([]);
@@ -114,7 +123,7 @@ const FilterCocktails = () => {
 
 	const filterData = () => {
 		const sets = [];
-
+		
 		drinksByName && sets.push(new Set(drinksByName))
 		drinksByCategory && sets.push(new Set(drinksByCategory))
 		drinksByIngridient && sets.push(new Set(drinksByIngridient))
@@ -136,15 +145,21 @@ const FilterCocktails = () => {
 		ingridient && fetchByIngridient();
 		category && fetchByCategories();
 		keyword && fetchByName();
+		setSortType(1)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [glass, ingridient, category, keyword]);
 
-	
+
 	useEffect(() => {
 		setDrinks(filterData)
+		setSortType(1)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [drinksByIngridient, drinksByName, drinksByGlass, drinksByCategory]);
 
+
+	useEffect(() => {
+		drinks && setDrinks(drinks.sort((a, b) => sortType * a.strDrink > b.strDrink ? 1 : -1));
+	}, [sortType, drinks])
 
 	const handleGlassSelect = (e) => {
 		setGlass(e.target.value)
@@ -159,9 +174,11 @@ const FilterCocktails = () => {
 	}
 
 	const handleSearch = (e) => {
-		setKeyword(e.target.value);
+		setKeyword(e.target.value)
 	}
-
+	const handleSortType = () => {
+		setSortType(sortType * -1)
+	}
 	return (
 		<div>
 			<h1>Filter cocktails</h1>
@@ -199,13 +216,17 @@ const FilterCocktails = () => {
 						})}
 					</select>
 				</InputWrap>
+				<SortSelect onClick={handleSortType}>
+					{sortType === 1 ? <img src="/sort-alpha-down-solid.svg" alt="sort asc icon" /> :
+						<img src="/sort-alpha-up-solid.svg" alt="sort desc icon" />}
+				</SortSelect>
 			</Filters>
 			{drinks == null ? <NoticeMessage message="Select option" /> :
 				drinks.length ? (
 					<Fragment>
 						<DrinksGrid elements={drinks} />
 					</Fragment>) :
-					<NoticeMessage message="No data for given filter" />
+					<NoticeMessage message="No data for given filters" />
 			}
 		</div>
 	)

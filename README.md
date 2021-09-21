@@ -1,20 +1,22 @@
+![Logo](https://github.com/JovanVuceljic/CocktailDIY/blob/main/public/cocktail.jpg)
+
 # CocktailDIY
 
 Using Free JSON API from [TheCocktailDB](https://www.thecocktaildb.com/) which is an open, crowd-sourced database of drinks and cocktails from around the world.
 
 # Technologies
-Node.js
-React.js 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Node.js
+* React.js 
+* This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Additional npm packages
-axios
-react
-react-dom
-react-router-dom
-react-scripts
-styled-components
-web-vitals
+* axios
+* react
+* react-dom
+* react-router-dom
+* react-scripts
+* styled-components
+* web-vitals
 
 ## Available Scripts
 

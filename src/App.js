@@ -9,8 +9,7 @@ import Home from './pages/Home.js';
 import About from './pages/About.js';
 import Author from './pages/Author.js';
 import Drink from './pages/Drink.js';
-import FilterCocktails from './pages/FilterCocktails.js';
-import SearchCocktails from './pages/SearchCocktails.js';
+import Cocktails from './pages/Cocktails.js';
 
 
 const Content = styled.div`
@@ -29,8 +28,7 @@ const App = () => {
         <Content>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/filter-cocktails" component={FilterCocktails} />
-            <Route path="/search-cocktails" component={SearchCocktails} />
+            <Route path="/cocktails" component={Cocktails} />
             <Route path="/about" component={About} />
             <Route path="/author" component={Author} />
             <Route path="/drink/:id" component={Drink} />

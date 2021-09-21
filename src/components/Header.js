@@ -90,8 +90,7 @@ const Header = (props) => {
 			<Bars src="/bars-solid.svg" alt="menu bars" onClick={handleToggleMenu} />
 			<Menu className={toggleMenu && 'open'}>
 				<MenuItem><Link to="/">Home</Link></MenuItem>
-				<MenuItem><Link to="/search-cocktails">Search Cocktails</Link></MenuItem>
-				<MenuItem><Link to="/filter-cocktails">Filter Cocktails</Link></MenuItem>
+				<MenuItem><Link to="/cocktails">Cocktails</Link></MenuItem>
 				<MenuItem><Link to="/about">About</Link></MenuItem>
 				<MenuItem><Link to="/author">Author</Link></MenuItem>
 			</Menu>

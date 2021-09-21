@@ -12,7 +12,14 @@ const Headline = styled.h1`
 	text-align: center;
 	text-transform: uppercase;
 	font-family: "sans-serif";
-	margin: 10px;
+	margin-bottom: 35px;
+	border: none;	
+	padding: 0;
+	font-size: 25px;
+`;
+const H2 = styled.h2`
+	border-bottom: 2px solid black;
+	padding-bottom: 10px;
 `;
 const Img = styled.img`
 	width: 100%;
@@ -20,14 +27,16 @@ const Img = styled.img`
 const Ul = styled.ul`
 	list-style-type: none;
 	padding: 0;
-	max-width: 400px;
-	margin: 50px auto;
+	max-width: 350px;
+	margin: 30px auto;
 `;
 const Li = styled.li`
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
 	width: 100%;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	padding-bottom: 4px;
 `;
 
 const Drink = ({ match }) => {
@@ -71,7 +80,8 @@ const Drink = ({ match }) => {
 				<div>
 					<Img src={strDrinkThumb} alt={strImageAttribution} />
 				</div>
-				<p>Instructions: {strInstructions}</p>
+				<H2>Instructions</H2>
+				<p>{strInstructions}</p>
 				<Ul>
 					<Li><div>Category:</div><div>{strCategory}</div></Li>
 					<Li><div>Alcoholic:</div><div>{strAlcoholic}</div></Li>
@@ -80,7 +90,7 @@ const Drink = ({ match }) => {
 					<Li><div>Glass:</div><div>{strGlass}</div></Li>
 					<Li><div>IBA:</div><div>{strIBA}</div></Li>
 				</Ul>
-				<h4>Ingridients</h4>
+				<H2>Ingridients</H2>
 				<Ul>
 					{strIngredient1 && (<Li><div>{strIngredient1}:</div><div>{strMeasure1}</div></Li>)}
 					{strIngredient2 && (<Li><div>{strIngredient2}:</div><div>{strMeasure2}</div></Li>)}

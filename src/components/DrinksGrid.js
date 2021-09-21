@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import NoticeMessage from './NoticeMessage';
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: 24.5% 24.5% 24.5% 24.5%;
-	grid-column-gap: 1%;
+	grid-template-columns: 32% 32% 32%;
+	grid-column-gap: 2%;
 	
 	@media only screen and (max-width: 680px) {
 		grid-template-columns: 49% 49%;	
@@ -13,7 +14,6 @@ const Grid = styled.div`
 `;
 
 const DrinkWrap = styled.div`
-	max-width: 300px;
 	box-shadow: 0 0 3px 1px rgb(0 0 0 / 25%);
 	border-radius: 3px;
 	margin-bottom: 14px;
@@ -54,14 +54,43 @@ const Img = styled.img`
 	width: 100%;
 `;
 
+const LoadMore = styled.div`
+	box-shadow: 0 0 2px 1px rgb(0 0 0 / 20%);
+	color: #555;
+	padding: 10px 0;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 13px;
+	font-weight: bold;
+	max-width: 150px;
+	text-align: center;
+	background: white;
+	margin: 30px auto;
+	cursor: pointer;
+	user-select: none;
+	&:hover {	
+		opacity: 0.8;
+	}
+	&:active {	
+		box-shadow: inset 0 0 2px 1px rgb(0 0 0 / 20%);
+	}
+`;
+
 const DrinksGrid = (props) => {
+	const [limit, setLimit] = useState(12)
 	const { elements } = props;
+	const gridItems = elements.slice(0, limit) || [];
 	return (
-		<Grid>
-			{elements && elements.map((el, i) => {
-				return (<Drink key={i} drink={el} />)
-			})}
-		</Grid>)
+		<div>
+			<NoticeMessage message={`Showing ${limit < elements.length ? limit : elements.length} out of ${elements.length} results`} />
+			<Grid>
+				{gridItems.map((el, i) => {
+					return (<Drink key={i} drink={el} />)
+				})}
+			</Grid>
+			{gridItems.length !== elements.length ? <LoadMore onClick={() => setLimit(limit + 6)}>Load More</LoadMore> : ""}
+		</div>
+	)
 }
 
 

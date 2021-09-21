@@ -15,9 +15,12 @@ import {
 
 const Filters = styled.div`
 	display: flex;
-	margin: 30px 0;
+	margin: 30px -10px;
 	@media only screen and (max-width: 680px) {
 		flex-direction: column;
+		div {
+			width: unset;
+		}
 	}
 `;
 
@@ -28,11 +31,10 @@ const InputWrap = styled.div`
 	align-items: center;
 	justify-content: center;
 	input, select {
-		box-shadow:  0 0 1px 1px rgba(0,0,0,0.5);
-		border-color: transparent;
+		border:  1px solid rgba(0,0,0,0.5);
 		width: 100%;
 		height: 30px;
-		outline: none;
+		outline-color: rgba(0,0,0,0.5);
 	}
 `;
 
@@ -48,7 +50,7 @@ const SortSelect = styled.div`
 const FilterCocktails = () => {
 
 	const [keyword, setKeyword] = useState("");
-	const [glass, setGlass] = useState("");
+	const [glass, setGlass] = useState(null);
 	const [ingridient, setIngridient] = useState(null);
 	const [category, setCategory] = useState(null);
 	const [sortType, setSortType] = useState(1);
@@ -123,7 +125,7 @@ const FilterCocktails = () => {
 
 	const filterData = () => {
 		const sets = [];
-		
+
 		drinksByName && sets.push(new Set(drinksByName))
 		drinksByCategory && sets.push(new Set(drinksByCategory))
 		drinksByIngridient && sets.push(new Set(drinksByIngridient))

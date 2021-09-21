@@ -64,7 +64,7 @@ const SearchCocktails = () => {
 					{keyword && <NoticeMessage message={`Showing results for search by name with keyword: ${keyword}`} />}
 					<DrinksGrid elements={drinks} />
 				</Fragment>) :
-				<NoticeMessage message="No data for given filter" />
+				<NoticeMessage message="No results for given search criteria." />
 			}
 		</div>
 	)

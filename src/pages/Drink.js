@@ -41,11 +41,21 @@ const Li = styled.li`
 	padding-bottom: 4px;
 `;
 
+const DateModified = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	margin-top: 90px;
+	font-size: 14px;
+	font-style: italic;
+`;
+
+
 const Drink = ({ match }) => {
 
-	const [drink, setDrink] = useState(null);
-
 	const { id } = match.params;
+	
+	const [drink, setDrink] = useState(null);
 
 	const fetchData = () => {
 		fetchDrink(id).then(res => {
@@ -63,17 +73,20 @@ const Drink = ({ match }) => {
 
 	const { strAlcoholic, strCategory, strCreativeCommonsConfirmed,
 		strDrink, strDrinkAlternate, strDrinkThumb,
-		strGlass, strIBA, strImageAttribution, strInstructions
-	} = drink || {};
-
-	const { strIngredient1, strIngredient2, strIngredient3,
+		strGlass, strIBA, strImageAttribution, strInstructions, dateModified, 
+		strIngredient1, strIngredient2, strIngredient3,
 		strIngredient4, strIngredient5, strIngredient6, 
 		strIngredient7, strIngredient8, strIngredient9,
 		strMeasure1, strMeasure2, strMeasure3,
 		strMeasure4, strMeasure5, strMeasure6, 
 		strMeasure7, strMeasure8, strMeasure9,
 	} = drink || {};
-	console.log(drink);
+	
+	const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+	const date = new Date(dateModified)
+	const dateModifiedFormat = `${date.getDate()}. ${monthNames[date.getMonth()]}. ${date.getFullYear()}.`; 
 
 	return (
 		drink ? (
@@ -86,12 +99,12 @@ const Drink = ({ match }) => {
 				<p>{strInstructions}</p>
 				<H2>Info</H2>
 				<Ul>
-					<Li><div>Category:</div><div>{strCategory}</div></Li>
-					<Li><div>Alcoholic:</div><div>{strAlcoholic}</div></Li>
-					<Li><div>Drink Alternate:</div><div>{strDrinkAlternate}</div></Li>
-					<Li><div>Creative Commons Confirmed: </div><div>{strCreativeCommonsConfirmed}</div></Li>
-					<Li><div>Glass:</div><div>{strGlass}</div></Li>
-					<Li><div>IBA:</div><div>{strIBA}</div></Li>
+					{strCategory && <Li><div>Category:</div><div>{strCategory}</div></Li>}
+					{strAlcoholic && <Li><div>Alcoholic:</div><div>{strAlcoholic}</div></Li>}
+					{strDrinkAlternate && <Li><div>Drink Alternate:</div><div>{strDrinkAlternate}</div></Li>}
+					{strCreativeCommonsConfirmed && <Li><div>Creative Commons Confirmed: </div><div>{strCreativeCommonsConfirmed}</div></Li>}
+					{strGlass && <Li><div>Glass:</div><div>{strGlass}</div></Li>}
+					{strIBA && <Li><div>IBA:</div><div>{strIBA}</div></Li>}
 				</Ul>
 				<H2>Ingridients</H2>
 				<Ul>
@@ -105,7 +118,7 @@ const Drink = ({ match }) => {
 					{strIngredient8 && (<Li><div>{strIngredient8}:</div><div>{strMeasure8}</div></Li>)}
 					{strIngredient9 && (<Li><div>{strIngredient9}:</div><div>{strMeasure9}</div></Li>)}
 				</Ul>
-
+				<DateModified>Date modified: {dateModifiedFormat} </DateModified>
 			</DrinkWrap>
 		) :
 			<NoticeMessage message="That cocktail doesn't exist" />

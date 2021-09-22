@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { fetchDrink } from '../api/functions.js';
+import { CocktailContext } from '../CocktailContext.js';
 import NoticeMessage from '../components/NoticeMessage.js';
 
 const DrinkWrap = styled.div`
@@ -53,6 +54,8 @@ const DateModified = styled.div`
 
 const Drink = ({ match }) => {
 
+	const { visitedCocktails, setVisitedCocktails } = useContext(CocktailContext);
+
 	const { id } = match.params;
 
 	const [drink, setDrink] = useState(null);
@@ -60,6 +63,18 @@ const Drink = ({ match }) => {
 	const fetchData = () => {
 		fetchDrink(id).then(res => {
 			setDrink(res[0] || {})
+
+			const arr = [res[0], ...visitedCocktails];
+			var flags = {};
+			var unique = arr.filter((el) => {
+				if (flags[el.idDrink]) {
+					return false;
+				}
+				flags[el.idDrink] = true;
+				return true;
+			});
+
+			setVisitedCocktails(unique.slice(0, 9))
 		}).catch(err => {
 			setDrink(null)
 			console.error(err);

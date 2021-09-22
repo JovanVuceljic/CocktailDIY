@@ -78,11 +78,11 @@ const LoadMore = styled.div`
 
 const DrinksGrid = (props) => {
 	const [limit, setLimit] = useState(12)
-	const { elements } = props;
+	const { elements, hideMessage } = props;
 	const gridItems = elements.slice(0, limit) || [];
 	return (
 		<div>
-			<NoticeMessage message={`Showing ${limit < elements.length ? limit : elements.length} out of ${elements.length} results`} />
+			{!hideMessage && <NoticeMessage message={`Showing ${limit < elements.length ? limit : elements.length} out of ${elements.length} results`} />}
 			<Grid>
 				{gridItems.map((el, i) => {
 					return (<Drink key={i} drink={el} />)

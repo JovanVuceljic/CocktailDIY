@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useContext } from 'react';
 import styled from 'styled-components';
 
 import DrinksGrid from '../components/DrinksGrid.js';
@@ -12,6 +12,7 @@ import {
 	fetchCategoryDrinks,
 	fetchDrinksByName
 } from '../api/functions.js';
+import { CocktailContext } from '../CocktailContext.js';
 
 const Filters = styled.div`
 	display: flex;
@@ -45,6 +46,39 @@ const SortSelect = styled.div`
 	max-width: 30px;
 	width: 100%;
 	margin-left: auto;
+`;
+
+const LastVisitedCocktails = styled.div`
+	display: flex;
+	flex-direction: row;
+	margin-top: 20px;
+	height: 100px;
+	overflow: hidden;
+	box-shadow: inset 0 0 6px 1px rgb(0 0 0 / 10%);
+	background: rgba(128,128,128,0.1);
+	padding: 10px 25px;
+	span {
+		letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    align-items: center;
+    display: flex;
+    margin-right: 20px;
+    min-width: 100px;
+	}
+	div {
+    width: 100%;
+		div{
+			grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px; 
+			grid-column-gap: 10px;
+			opacity: 0.8;
+			h3 {
+				font-size: 10px;
+				letter-spacing: 0;
+			}
+		}
+	}
 `;
 
 const FilterCocktails = () => {
@@ -181,12 +215,19 @@ const FilterCocktails = () => {
 	const handleSortType = () => {
 		setSortType(sortType * -1)
 	}
+	const { visitedCocktails } = useContext(CocktailContext);
 	return (
 		<div>
+			{visitedCocktails.length > 0 && (
+				<LastVisitedCocktails>
+					<span>Last viewed</span>
+					<DrinksGrid elements={visitedCocktails} hideMessage={true} />
+				</LastVisitedCocktails>
+			)}
 			<h1>Filter cocktails</h1>
 			<Filters>
 				<InputWrap>
-					<input type="search" onChange={handleSearch} placeholder={`Serach by name`} />
+					<input type="search" onChange={handleSearch} placeholder={`Serach by name..`} />
 				</InputWrap>
 				<InputWrap>
 					<select onChange={handleCategorySelect}>

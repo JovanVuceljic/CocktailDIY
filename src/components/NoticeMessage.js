@@ -8,8 +8,6 @@ const Message = styled.div`
 	margin-bottom: 30px;
 `;
 
-const NoticeMessage = ({ message = "No data" }) => {
-	return (<Message>{message}</Message>)
-}
+const NoticeMessage = ({ message = "No data" }) => <Message>{message}</Message>;
 
 export default NoticeMessage

@@ -76,14 +76,10 @@ const Menu = styled.div`
 	}
 `;
 
-const Header = (props) => {
+const Header = () => {
 
 	const [toggleMenu, setToggleMenu] = useState(false);
-
-
-	const handleToggleMenu = () => {
-		setToggleMenu(!toggleMenu)
-	}
+	const handleToggleMenu = () => setToggleMenu(!toggleMenu)
 
 	return (
 		<HeaderWrap>

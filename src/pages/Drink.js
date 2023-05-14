@@ -55,18 +55,16 @@ const DateModified = styled.div`
 const Drink = ({ match }) => {
 
 	const { visitedCocktails, setVisitedCocktails } = useContext(CocktailContext);
-
 	const { id } = match.params;
-
 	const [drink, setDrink] = useState(null);
 
-	const fetchData = () => {
+	const fetchData = () => 
 		fetchDrink(id).then(res => {
 			setDrink(res[0] || {})
 
 			const arr = [res[0], ...visitedCocktails];
-			var flags = {};
-			var unique = arr.filter((el) => {
+			let flags = {};
+			let unique = arr.filter((el) => {
 				if (flags[el.idDrink]) {
 					return false;
 				}
@@ -79,7 +77,7 @@ const Drink = ({ match }) => {
 			setDrink(null)
 			console.error(err);
 		});
-	}
+
 
 	useEffect(() => {
 		fetchData()

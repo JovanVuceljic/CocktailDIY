@@ -77,9 +77,11 @@ const LoadMore = styled.div`
 `;
 
 const DrinksGrid = (props) => {
+	
 	const [limit, setLimit] = useState(12)
 	const { elements, hideMessage } = props;
 	const gridItems = elements.slice(0, limit) || [];
+
 	return (
 		<div>
 			{!hideMessage && <NoticeMessage message={`Showing ${limit < elements.length ? limit : elements.length} out of ${elements.length} results`} />}
@@ -95,6 +97,7 @@ const DrinksGrid = (props) => {
 
 
 const Drink = ({ drink }) => {
+
 	const { idDrink, strDrink, strDrinkThumb, strImageAttribution } = drink;
 
 	return (

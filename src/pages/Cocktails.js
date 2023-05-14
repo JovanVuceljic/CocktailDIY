@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import DrinksGrid from '../components/DrinksGrid.js';
 import NoticeMessage from '../components/NoticeMessage.js';
+import { CocktailContext } from '../CocktailContext.js';
 import {
 	fetchGlassDrinks,
 	fetchGlasses,
@@ -12,7 +13,6 @@ import {
 	fetchCategoryDrinks,
 	fetchDrinksByName
 } from '../api/functions.js';
-import { CocktailContext } from '../CocktailContext.js';
 
 const Filters = styled.div`
 	display: flex;
@@ -100,54 +100,45 @@ const FilterCocktails = () => {
 	const [drinksByIngridient, setDrinksByIngridient] = useState(null);
 
 	const initialFetch = () => {
-		fetchGlasses().then(res => {
-			setGlassTypeList(res)
-		}).catch(err => {
-			console.error(err);
-		});
-		fetchIngridients().then(res => {
-			setIngridientList(res)
-		}).catch(err => {
-			console.error(err);
-		});
-		fetchCategories().then(res => {
-			setCategoryList(res)
-		}).catch(err => {
-			console.error(err);
-		});
+		fetchGlasses()
+		.then(res => setGlassTypeList(res))
+		.catch(err => console.error(err));
+
+		fetchIngridients()
+		.then(res => setIngridientList(res))
+		.catch(err => console.error(err));
+		
+		fetchCategories()
+		.then(res => setCategoryList(res))
+		.catch(err => console.error(err));
 	}
 
 
 	const fetchByName = () => {
-		fetchDrinksByName(keyword).then(res => {
-			setDrinksByName(res);
-		}).catch(err => {
+		fetchDrinksByName(keyword)
+		.then(res => setDrinksByName(res))
+		.catch(err => {
 			setDrinks(null)
 			console.error(err);
 		});
 	}
 
 	const fetchByCategories = () => {
-		fetchCategoryDrinks(category).then(res => {
-			setDrinksByCategory(res);
-		}).catch(err => {
-			console.error(err);
-		});
+		fetchCategoryDrinks(category)
+		.then(res => setDrinksByCategory(res))
+		.catch(err => console.error(err));
 	}
+
 	const fetchByGlass = () => {
-		fetchGlassDrinks(glass).then(res => {
-			setDrinksByGlass(res);
-		}).catch(err => {
-			console.error(err);
-		});
+		fetchGlassDrinks(glass)
+		.then(res => setDrinksByGlass(res))
+		.catch(err => console.error(err));
 	}
 
 	const fetchByIngridient = () => {
-		fetchIngridientDrinks(ingridient).then(res => {
-			setDrinksByIngridient(res);
-		}).catch(err => {
-			console.error(err);
-		});
+		fetchIngridientDrinks(ingridient)
+		.then(res => setDrinksByIngridient(res))
+		.catch(err => console.error(err));
 	}
 
 
@@ -197,25 +188,14 @@ const FilterCocktails = () => {
 		drinks && setDrinks(drinks.sort((a, b) => sortType * a.strDrink > b.strDrink ? 1 : -1));
 	}, [sortType, drinks])
 
-	const handleGlassSelect = (e) => {
-		setGlass(e.target.value)
-	}
-
-	const handleIngridientSelect = (e) => {
-		setIngridient(e.target.value)
-	}
-
-	const handleCategorySelect = (e) => {
-		setCategory(e.target.value)
-	}
-
-	const handleSearch = (e) => {
-		setKeyword(e.target.value)
-	}
-	const handleSortType = () => {
-		setSortType(sortType * -1)
-	}
+	const handleGlassSelect = (e) => setGlass(e.target.value)
+	const handleIngridientSelect = (e) => setIngridient(e.target.value)
+	const handleCategorySelect = (e) => setCategory(e.target.value)
+	const handleSearch = (e) => setKeyword(e.target.value)
+	const handleSortType = () => setSortType(sortType * -1)
+	
 	const { visitedCocktails } = useContext(CocktailContext);
+	
 	return (
 		<div>
 			{visitedCocktails.length > 0 && (
@@ -232,31 +212,25 @@ const FilterCocktails = () => {
 				<InputWrap>
 					<select onChange={handleCategorySelect}>
 						<option> Select category.. </option>
-						{categoryList && categoryList.map((el, i) => {
-							return (
-								<option key={i}> {el.strCategory} </option>
-							)
-						})}
+						{categoryList && categoryList.map((el, i) => 
+							<option key={i}> {el.strCategory} </option>
+						)}
 					</select>
 				</InputWrap>
 				<InputWrap>
 					<select onChange={handleGlassSelect}>
 						<option> Select glass type.. </option>
-						{glassTypeList && glassTypeList.map((el, i) => {
-							return (
-								<option key={i}> {el.strGlass} </option>
-							)
-						})}
+						{glassTypeList && glassTypeList.map((el, i) => 
+							<option key={i}> {el.strGlass} </option>
+						)}
 					</select>
 				</InputWrap>
 				<InputWrap>
 					<select onChange={handleIngridientSelect}>
 						<option> Select ingridient.. </option>
-						{ingridientList && ingridientList.map((el, i) => {
-							return (
-								<option key={i}> {el.strIngredient1} </option>
-							)
-						})}
+						{ingridientList && ingridientList.map((el, i) => 
+							<option key={i}> {el.strIngredient1} </option>	
+						)}
 					</select>
 				</InputWrap>
 				<SortSelect onClick={handleSortType}>
@@ -268,8 +242,9 @@ const FilterCocktails = () => {
 				drinks.length ? (
 					<Fragment>
 						<DrinksGrid elements={drinks} />
-					</Fragment>) :
-					<NoticeMessage message="No data for given filters" />
+					</Fragment>
+				) : 
+				<NoticeMessage message="No data for given filters" />
 			}
 		</div>
 	)

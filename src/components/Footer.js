@@ -14,12 +14,10 @@ const FooterWrap = styled.div`
 	`;
 
 
-const Footer = (props) => {
-	return (
-		<FooterWrap>
-			<p>Jovan Vučeljić 162/14 2021</p>
-		</FooterWrap>
-	)
-}
+const Footer = () => 
+	<FooterWrap>
+		<p>Jovan Vučeljić 162/14 2021</p>
+	</FooterWrap>;
+	
 
 export default Footer;

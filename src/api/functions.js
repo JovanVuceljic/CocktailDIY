@@ -3,9 +3,6 @@ import axios from 'axios';
 const API_URL = "https://thecocktaildb.com/api/json/v1/1/";
 const config = { mode: 'no-cors' };
 
-
-
-
 export const fetchDrinksByName = (name = '') => {
 	return new Promise((resolve, reject) => {
 		axios
@@ -35,8 +32,6 @@ export const fetchDrinksByIngridientName = (ingridient = '') => {
 	});
 }
 
-
-
 export const fetchIngridientDrinks = (ingridient = '') => {
 	return new Promise((resolve, reject) => {
 		axios
@@ -64,7 +59,6 @@ export const fetchGlassDrinks = (glass = '') => {
 			});
 	});
 }
-
 
 export const fetchCategoryDrinks = (category = '') => {
 	return new Promise((resolve, reject) => {
